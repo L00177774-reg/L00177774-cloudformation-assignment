@@ -6,19 +6,44 @@ Metadata:
         width: 60
         height: 60
       position:
-        x: 181
-        'y': 158
+        x: 180
+        'y': 160
+      z: 0
+      embeds: []
+      isassociatedwith:
+        - 905a67cb-2a92-47e5-9566-fa603d0184c6
+    905a67cb-2a92-47e5-9566-fa603d0184c6:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 260
+        'y': 160
       z: 0
       embeds: []
 Resources:
-  EC2I1X8QN:
+  PublicEC2:
     Type: 'AWS::EC2::Instance'
     Properties:
-      InstanceType: !Ref InstanceTypeParameter # setting params outside the template to improve formatting
+      InstanceType: !Ref InstanceTypeParameter
       ImageId: ami-09d3b3274b6c5d4aa
+      SecurityGroupIds:
+        - !Ref PublicSecurity
     Metadata:
       'AWS::CloudFormation::Designer':
         id: ac923a6c-fcb7-4232-84bf-ca5ae121227f
+  PublicSecurity:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Only Allow SSH from Local IP address
+      SecurityGroupIngress:
+        - CidrIp: 109.79.47.92/32
+          FromPort: 22
+          IpProtocol: tcp
+          ToPort: 22
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 905a67cb-2a92-47e5-9566-fa603d0184c6
 Parameters:
   InstanceTypeParameter:
     Type: String
