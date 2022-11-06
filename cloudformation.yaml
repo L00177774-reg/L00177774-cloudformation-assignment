@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: 2010-09-09
+Metadata:
+  'AWS::CloudFormation::Designer':
+    ac923a6c-fcb7-4232-84bf-ca5ae121227f:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 181
+        'y': 158
+      z: 0
+      embeds: []
+Resources:
+  EC2I1X8QN:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: !Ref InstanceTypeParameter # setting params outside the template to improve formatting
+      ImageId: ami-09d3b3274b6c5d4aa
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: ac923a6c-fcb7-4232-84bf-ca5ae121227f
+Parameters:
+  InstanceTypeParameter:
+    Type: String
+    Description: EC2 Instance Type - Only t2.micro is allowed
+    Default: t2.micro
+    AllowedValues:
+      - t2.micro
